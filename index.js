@@ -17,7 +17,7 @@ const cam = new THREE.PerspectiveCamera(
   1,
   1000
 );
-cam.position.set(0, 1, 100);
+cam.position.set(0, 1, 50);
 scene.add(cam);
 
 // === Renderer ===
@@ -59,11 +59,11 @@ const materials = baseColors.map(
 const gui = new GUI();
 const params = {
   autoRotateSpeed: 0.69,
-  count: 100000,
-  radius: 50,
-  sizeMin: 0.5,
-  sizeMax: 3,
-  wireframe: true,
+  count: 660000,
+  radius: 100,
+  sizeMin: 0.1,
+  sizeMax: 0.5,
+  wireframe: false,
   regenerate: () => buildTriangles(),
 };
 
@@ -72,7 +72,7 @@ gui
   .add(params, "autoRotateSpeed", 0, 5, 0.01)
   .onChange((val) => (controls.autoRotateSpeed = val));
 gui
-  .add(params, "count", 1000, 200000, 1000)
+  .add(params, "count", 1000, 1000000, 1000)
   .onFinishChange(() => buildTriangles());
 gui.add(params, "radius", 10, 100, 1).onFinishChange(() => buildTriangles());
 gui.add(params, "sizeMin", 0.1, 5, 0.1).onFinishChange(() => buildTriangles());
