@@ -16,7 +16,7 @@ const cam = new THREE.PerspectiveCamera(
 
 const control = new OrbitControls(cam, canvas);
 control.autoRotate = true;
-control.autoRotateSpeed = 0.5;
+control.autoRotateSpeed = 0.69;
 control.enableDamping = true;
 const renderer = new THREE.WebGLRenderer({ canvas: canvas });
 window.addEventListener("resize", () => {
@@ -32,7 +32,7 @@ renderer.setSize(canvasSize.width, canvasSize.height);
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
 const geometry = new THREE.BufferGeometry();
-const count = 70000;
+const count = 100000;
 const radius = 50;
 const sizeMin = 0.5;
 const sizeMax = 3;
@@ -128,9 +128,10 @@ scene.add(cam);
 cam.position.z = 100;
 cam.position.y = 1;
 cam.lookAt(new THREE.Vector3(0));
+const clock = new THREE.Clock();
 const tick = () => {
   renderer.render(scene, cam);
-  control.update();
+  control.update(clock.getDelta());
   window.requestAnimationFrame(tick);
 };
 tick();
